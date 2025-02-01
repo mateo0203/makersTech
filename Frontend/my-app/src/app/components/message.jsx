@@ -1,9 +1,10 @@
 import { colors, Paper } from "@mui/material";
 import React from "react";
 
-const Message = ({ message, key }) => {
+// Componente que ayuda a visualiza los mensajes tanto el bot como del usuario
+const Message = ({ message }) => {
   const backgroundColor = message.type === "bot" ? "#a5d6a7" : "white";
-  const alignSelf = message.type === "bot" ? "flex-end" : "flex-start";
+  const alignSelf = message.type === "bot" ? "flex-start" : "flex-end";
   return (
     <Paper
       sx={{
