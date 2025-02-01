@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import Message from "./message";
 import Input from "./input";
+import { get } from "../api";
 
 const defaultChat = [
   {
@@ -78,6 +79,7 @@ const defaultChat = [
 //Componente principal para mostrar la ventana del chat
 export default function ChatWindow() {
   const [chat, setChat] = useState(defaultChat);
+  const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -91,13 +93,29 @@ export default function ChatWindow() {
   }, [chat]);
 
   const IAHelp = (text) => {
-    //simular respuesta IA
-    const newMessage = {
-      id: Date.now() + 1,
-      type: "bot",
-      message: "soy la IA",
-    };
-    setChat((prevMessages) => [...prevMessages, newMessage]);
+    setLoading(true); //para que el usuario no escriba mas
+    get("/ia", {
+      textUser: text,
+    })
+      .then((response) => {
+        const newMessage = {
+          id: Date.now() + 1,
+          type: "bot",
+          message: response,
+        };
+        setChat((prevMessages) => [...prevMessages, newMessage]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        const newMessage = {
+          id: Date.now() + 1,
+          type: "bot",
+          message: "Ha ocurrido un error, intente de nuevo",
+        };
+        setChat((prevMessages) => [...prevMessages, newMessage]);
+        setLoading(false);
+      });
   };
 
   const onKey = (text) => {
@@ -125,7 +143,7 @@ export default function ChatWindow() {
 
         <div ref={messagesEndRef} />
       </Box>
-      <Input onKey={onKey} />
+      <Input onKey={onKey} loading={loading} />
     </Box>
   );
 }
