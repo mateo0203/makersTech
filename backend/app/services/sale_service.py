@@ -1,23 +1,6 @@
-from sqlalchemy.orm import Session
-from app.models.sale import Sale
-from app.schemas.sale import SaleSchema, SaleCreateSchema
 from datetime import datetime
 from app.DB import hardcoded_database
 
-
-# Create a new sale (purchase)
-def create_sale(db: Session, sale_data: SaleCreateSchema):
-    new_sale = Sale(
-        product_id=sale_data.product_id,
-        user_id=sale_data.user_id,
-        quantity=sale_data.quantity,
-        price=sale_data.price,
-        timestamp=datetime.utcnow()
-    )
-    db.add(new_sale)
-    db.commit()
-    db.refresh(new_sale)
-    return new_sale
 
 # Get all sales data
 def get_sales_data():

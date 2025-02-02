@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes.chatbot import router as chatbot_router
-from app.database import engine, Base
 import uvicorn
 
 # Initialize FastAPI app
@@ -20,8 +19,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Create database tables (only necessary if not using Alembic migrations)
-Base.metadata.create_all(bind=engine)
 
 # Include chatbot routes
 app.include_router(chatbot_router, prefix="/api")

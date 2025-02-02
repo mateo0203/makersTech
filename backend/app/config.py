@@ -10,9 +10,6 @@ class Config:
     # OpenAI API Key
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-    # Database URL (PostgreSQL)
-    DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost/makers_tech")
-
     # Application Settings
     APP_NAME = "Makers Tech Chatbot"
     DEBUG_MODE = os.getenv("DEBUG_MODE", "False").lower() == "true"

@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+env/
+*.sqlite3
+*.db
+*.log
+*.pid
+*.swp
+.DS_Store
+.idea/
+.vscode/
+.mypy_cache/
+.coverage
+*.pyc
+instance/
+
+# FastAPI & Dependencies
+/config.py
+/config.json
+/config.yaml
+/.env
+/.venv
+
+# Node.js & React
+node_modules/
+build/
+dist/
+.cache/
+.yarn/
+.npm/
+
+# Logs & Temporary Files
+*.log
+*.out
+*.pid
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+Thumbs.db
+
+# Git & OS-specific files
+.DS_Store
+.git/

@@ -1,16 +1,15 @@
 #from openai import OpenAI
 
 import google.generativeai as genai
-from sqlalchemy.orm import Session
 import os
 from app.config import Config
 import inspect
 import app.services.product_service as product_service
-import app.services.inventory_service as inventory_service
 import app.services.sale_service as sale_service
 
 # Load OpenAI API Key from config.py
 aConfig = Config()
+print(aConfig.GEMINI_API_KEY)
 genai.configure(api_key=aConfig.GEMINI_API_KEY)
 MODEL = "gemini-1.5-flash"  # You can change this to "gemini-1.5-flash" for faster responses
 
@@ -58,7 +57,7 @@ def determine_crud_operation(user_message: str):
     return operation if operation in CRUD_SERVICES else None
 
 # 🔹 Function to Extract Parameters from User Message
-def extract_parameters(db: Session, service_function, user_message):
+def extract_parameters(service_function, user_message):
     """Dynamically extracts parameters needed for the selected service function."""
     params = {}
     function_signature = inspect.signature(service_function)
@@ -100,7 +99,7 @@ def extract_parameters(db: Session, service_function, user_message):
 
     return params
 
-def get_keyword_mapping(db: Session):
+def get_keyword_mapping():
     """Dynamically retrieves keywords (brands, product types, product IDs) from the database."""
     keyword_mapping = {
         "brand": [],
@@ -173,7 +172,7 @@ def generate_ai_response(user_message: str, query_result):
 
 
 
-def chatbot_response(db: Session, user_message: str):
+def chatbot_response(user_message: str):
     """Determines the CRUD action, extracts parameters dynamically, executes the service function, and formats the response with AI."""
     operation = determine_crud_operation(user_message)
     print(f"Operation: {operation}")
@@ -186,7 +185,7 @@ def chatbot_response(db: Session, user_message: str):
     service_function = CRUD_SERVICES[operation]
     
     # 🔹 Extract parameters dynamically using database values
-    params = extract_parameters(db, service_function, user_message)
+    params = extract_parameters(service_function, user_message)
 
     # 🔹 Call the service function with extracted parameters
     print(f"The parameter: {params}")
