@@ -29,7 +29,6 @@ app.include_router(chatbot_router, prefix="/api")
 # Root endpoint for testing
 @app.get("/")
 def home():
-    print("jsjs")
     return {"message": "Welcome to Makers Tech Chatbot API 🚀"}
 
 # Run the server (if running directly)

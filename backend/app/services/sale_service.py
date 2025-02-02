@@ -2,6 +2,8 @@ from sqlalchemy.orm import Session
 from app.models.sale import Sale
 from app.schemas.sale import SaleSchema, SaleCreateSchema
 from datetime import datetime
+from app.DB import hardcoded_database
+
 
 # Create a new sale (purchase)
 def create_sale(db: Session, sale_data: SaleCreateSchema):
@@ -17,9 +19,22 @@ def create_sale(db: Session, sale_data: SaleCreateSchema):
     db.refresh(new_sale)
     return new_sale
 
-# Get sales data for a specific product
-def get_sales_data(db: Session, product_id: int = None):
-    query = db.query(Sale)
-    if product_id:
-        query = query.filter(Sale.product_id == product_id)
-    return query.all()
+# Get all sales data
+def get_sales_data():
+    """Fetch all sales data from the hardcoded database."""
+    results = []
+    
+    for sale in hardcoded_database.hardcoded_db["sales"]:
+        # Find product details
+        product = next((p for p in hardcoded_database.hardcoded_db["products"] if p["product_id"] == sale["product_id"]), None)
+
+        # Structure the response
+        results.append({
+            "product_name": product["description"] if product else "Unknown Product",
+            "brand": product["brand"] if product else "Unknown Brand",
+            "product_type": product["product_type"] if product else "Unknown Type",
+            "quantity_sold": sale["quantity"],
+            "timestamp": sale["timestamp"]
+        })
+    
+    return results

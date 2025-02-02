@@ -16,20 +16,16 @@ MODEL = "gemini-1.5-flash"  # You can change this to "gemini-1.5-flash" for fast
 
 # 🔹 Dynamically Collect CRUD Functions
 CRUD_SERVICES = {
-    "get_inventory_by_brand": inventory_service.get_inventory_by_brand,
-    "get_total_stock": inventory_service.get_total_stock,
-    "get_all_products": product_service.get_all_products,
-    "get_product_by_id": product_service.get_product_by_id,
+    "get_all_products_inventory_data": product_service.get_all_products,
     "get_sales_data": sale_service.get_sales_data,
+    "not_related_to_ecommerce_data": product_service.not_related_to_ecommerce_data
 }
 
 # 🔹 Generate Descriptions for OpenAI Prompt
 CRUD_DESCRIPTIONS = {
-    "get_inventory_by_brand": "Obtener detalles de inventario para una marca o tipo de producto específico.",
-    "get_total_stock": "Obtener el stock total de todos los productos en inventario.",
-    "get_all_products": "Obtener una lista de todos los productos disponibles.",
-    "get_product_by_id": "Obtener detalles sobre un producto específico mediante product_id.",
-    "get_sales_data": "Obtener estadísticas de ventas para un producto específico."
+    "get_all_products_inventory_data": "Obtener una lista de todos los productos junto con sus detalles de inventario, como disponibilidad, precio y cantidad.",
+    "get_sales_data": "Obtener datos de ventas de todos los productos, incluyendo la cantidad vendida y la fecha de venta.",
+    "not_related_to_ecommerce_data": "Este endpoint no está relacionado con datos de makers tech y maneja información independiente."
 }
 
 def determine_crud_operation(user_message: str):
@@ -166,6 +162,7 @@ def generate_ai_response(user_message: str, query_result):
 
         Responde de manera natural y amigable para el usuario.  
     """
+    print(f"Este es el query que le estamos dando a la IA: {prompt}")
 
 
     model = genai.GenerativeModel(MODEL)

@@ -1,8 +1,8 @@
 from app.services.product_service import (
     create_product,
     get_all_products,
-    get_product_by_id,
-    delete_product
+    delete_product,
+    not_related_to_ecommerce_data
 )
 
 from app.services.inventory_service import (
