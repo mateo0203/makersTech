@@ -11,69 +11,6 @@ const defaultChat = [
     type: "bot",
     message: "Bienvenido al chat de Makers, en qué te puedo ayudar",
   },
-  {
-    id: 2,
-    type: "user",
-    message:
-      "Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS",
-  },
-  {
-    id: 3,
-    type: "bot",
-    message:
-      "Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas?",
-  },
-  {
-    id: 4,
-    type: "bot",
-    message: "Bienvenido al chat de Makers, en qué te puedo ayudar",
-  },
-  {
-    id: 5,
-    type: "user",
-    message:
-      "Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS",
-  },
-  {
-    id: 6,
-    type: "bot",
-    message:
-      "Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas?Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas?",
-  },
-  {
-    id: 7,
-    type: "bot",
-    message: "Bienvenido al chat de Makers, en qué te puedo ayudar",
-  },
-  {
-    id: 8,
-    type: "user",
-    message:
-      "Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS",
-  },
-  {
-    id: 9,
-    type: "bot",
-    message:
-      "Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas?Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas?",
-  },
-  {
-    id: 10,
-    type: "bot",
-    message: "Bienvenido al chat de Makers, en qué te puedo ayudar",
-  },
-  {
-    id: 11,
-    type: "user",
-    message:
-      "Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS Quiero saber cuantos computadores tienen de la marca ASUS",
-  },
-  {
-    id: 12,
-    type: "bot",
-    message:
-      "Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas?Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas? Tenemos 5 del año 2014 y 2 del 2025. Quieres saber algo mas?",
-  },
 ];
 
 //Componente principal para mostrar la ventana del chat
