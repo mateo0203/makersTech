@@ -30,18 +30,17 @@ export default function ChatWindow() {
   }, [chat]);
 
   const IAHelp = (text) => {
+    const data = {
+      question: text,
+    };
     setLoading(true); //para que el usuario no escriba mas
-    post(
-      "http://localhost:5000/consulta",
-      (data = {
-        question: text,
-      })
-    )
+    post("http://localhost:5000/consulta", data)
       .then((response) => {
+        console.log(response.data.response);
         const newMessage = {
           id: Date.now() + 1,
           type: "bot",
-          message: response,
+          message: response.data.response,
         };
         setChat((prevMessages) => [...prevMessages, newMessage]);
         setLoading(false);
