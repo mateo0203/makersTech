@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import Message from "./message";
 import Input from "./input";
-import { get } from "../api";
+import { get, post } from "../api";
 
 const defaultChat = [
   {
@@ -31,9 +31,12 @@ export default function ChatWindow() {
 
   const IAHelp = (text) => {
     setLoading(true); //para que el usuario no escriba mas
-    get("/ia", {
-      textUser: text,
-    })
+    post(
+      "http://localhost:5000/consulta",
+      (data = {
+        question: text,
+      })
+    )
       .then((response) => {
         const newMessage = {
           id: Date.now() + 1,

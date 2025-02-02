@@ -8,3 +8,12 @@ export const get = async (endpoint, params) => {
     throw error; // Rechazar la promesa con el error
   }
 };
+
+export const post = async (endpoint, data) => {
+  try {
+    const response = await axios.post(endpoint, data);
+    return response;
+  } catch (error) {
+    throw error; // Re-lanza el error para manejarlo en el componente
+  }
+};
