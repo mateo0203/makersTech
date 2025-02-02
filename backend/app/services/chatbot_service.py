@@ -61,8 +61,6 @@ def extract_parameters(service_function, user_message):
     """Dynamically extracts parameters needed for the selected service function."""
     params = {}
     function_signature = inspect.signature(service_function)
-    print(f"The function signature is: {function_signature.parameters}")
-    print(f"User message: {user_message}")
     # 🔹 Get dynamic keyword mapping from the database
    #keyword_mapping = get_keyword_mapping(db)
        # 🔹 Hardcoded keyword mapping
@@ -98,53 +96,6 @@ def extract_parameters(service_function, user_message):
             params["product_id"] = product_id
 
     return params
-
-def get_keyword_mapping():
-    """Dynamically retrieves keywords (brands, product types, product IDs) from the database."""
-    keyword_mapping = {
-        "brand": [],
-        "product_type": [],
-        "product_id": {}
-    }
-    """
-    # 🔹 Get all brands and product types dynamically
-    brands = db.execute("SELECT DISTINCT brand FROM products").fetchall()
-    product_types = db.execute("SELECT DISTINCT product_type FROM products").fetchall()
-    products = db.execute("SELECT product_id, product_type, brand FROM products").fetchall()
-
-     # 🔹 Populate keyword mapping dynamically
-    keyword_mapping["brand"] = [row[0] for row in brands if row[0]]  # Extract unique brands
-    keyword_mapping["product_type"] = [row[0] for row in product_types if row[0]]  # Extract unique types
-    
-    # 🔹 Map product names to IDs for better searchability
-    for row in products:
-        product_name = f"{row[1]} {row[2]}"  # Example: "Laptop Apple"
-        keyword_mapping["product_id"][product_name.lower()] = row[0]
-    """
-
-    # Hardcoded data for MVP (Instead of querying the database)
-    brands = ["Apple", "Samsung", "Dell", "HP"]  # Unique brands
-    product_types = ["Laptop", "Smartphone", "Tablet", "Monitor"]  # Unique product types
-
-    # List of available products (Each product has an ID, type, and brand)
-    products = [
-        {"product_id": 1, "product_type": "Laptop", "brand": "Apple"},
-        {"product_id": 2, "product_type": "Laptop", "brand": "Dell"},
-        {"product_id": 3, "product_type": "Smartphone", "brand": "Samsung"},
-        {"product_id": 4, "product_type": "Tablet", "brand": "Apple"},
-        {"product_id": 5, "product_type": "Monitor", "brand": "HP"},
-    ]
-
-    # 🔹 Populate keyword mapping dynamically
-    keyword_mapping["brand"] = brands  # Extract unique brands
-    keyword_mapping["product_type"] = product_types  # Extract unique types
-    
-    # 🔹 Map product names to IDs for better searchability
-    for product in products:
-        product_name = f"{product['product_type']} {product['brand']}"  # Example: "Laptop Apple"
-        keyword_mapping["product_id"][product_name.lower()] = product["product_id"]
-
-    return keyword_mapping
 
 # 🔹 Generate AI-Powered Response Based on Query Result
 def generate_ai_response(user_message: str, query_result):
